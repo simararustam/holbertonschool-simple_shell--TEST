@@ -26,5 +26,6 @@ int custom_strcmp(const char *s1, const char *s2);
 size_t custom_strlen(const char *s);
 int arg_counter(char *buf, int size);
 int custom_atoi(const char *str);
+long custom_strtol(const char *str);
 
 #endif
