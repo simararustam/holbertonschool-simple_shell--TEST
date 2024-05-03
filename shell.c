@@ -15,7 +15,7 @@ int main_helper(char **fcommand, int status, char *buf)
 			printf("\n");
 		return (1);
 	}
-	else if (!strcmp(fcommand[0], "exit"))
+	else if (!custom_strcmp(fcommand[0], "exit"))
 	{
 		free(buf), free_path(), free(fcommand);
 		return (1);
@@ -41,13 +41,13 @@ int main(int argc, char **argv, char **env)
 		fcommand = get_command(&buf);
 		if (main_helper(fcommand, status, buf))
 			break;
-		if (!strcmp(fcommand[0], " "))
+		if (!custom_strcmp(fcommand[0], " "))
 		{
 			free(buf), free(fcommand[0]), free(fcommand);
 			continue;
 		}
-		command = strdup(fcommand[0]);
-		if (!strcmp("env", fcommand[0]))
+		command = custom_strdup(fcommand[0]);
+		if (!custom_strcmp("env", fcommand[0]))
 		{
 			print_env(), free(buf), free(fcommand), free(command);
 			continue;
