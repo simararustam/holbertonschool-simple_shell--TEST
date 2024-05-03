@@ -4,10 +4,9 @@
 #define BUFFER_SIZE 1024
 
 /**
-  * custom_getline - Custom getline function
-  * Return: Returns string from buffer
-  */
-
+ * custom_getline - Custom getline function
+ * Return: Returns string from buffer
+ */
 char *custom_getline(void)
 {
 	static char buffer[BUFFER_SIZE];
@@ -34,7 +33,7 @@ char *custom_getline(void)
 				line = (char *)malloc(line_size + 1);
 				if (line == NULL)
 					return (NULL);
-				
+
 				for (i = 0; i < line_size; i++)
 					line[i] = buffer[pos - line_size + i];
 				line[i] = '\0';
@@ -47,13 +46,12 @@ char *custom_getline(void)
 	}
 }
 
-
 /**
-  * arg_counter - counts number of arguments
-  * @buf: user input
-  * @size: size of user input
-  * Return: number of arguments
-  */
+ * arg_counter - counts number of arguments
+ * @buf: user input
+ * @size: size of user input
+ * Return: number of arguments
+ */
 int arg_counter(char *buf, int size)
 {
 	int count = 0, i;
@@ -67,24 +65,29 @@ int arg_counter(char *buf, int size)
 }
 
 /**
-  * get_command - format command line arguments
-  * @buf: buffer for storing user input
-  * Return: memory address where arguments are stored
-  */
+ * get_command - format command line arguments
+ * @buf: buffer for storing user input
+ * Return: memory address where arguments are stored
+ */
 char **get_command(char **buf)
 {
 	char **array;
 	size_t k, i, l = 0, count;
 
 	*buf = custom_getline();
-	if (*buf == NULL) 
+	if (*buf == NULL)
 	{
 		return (NULL);
 	}
 
-	k = strlen(*buf);
+	k = 0;
+	while ((*buf)[k] != '\0' && (*buf)[k] != '\n')
+	{
+		k++;
+	}
+
 	count = arg_counter(*buf, k);
-	if (!count) 
+	if (!count)
 	{
 		array = malloc(sizeof(char *));
 		if (array == NULL)
@@ -92,22 +95,25 @@ char **get_command(char **buf)
 			free(*buf);
 			return NULL;
 		}
-		array[0] = strdup(" ");
+		array[0] = malloc(sizeof(char));
 		if (array[0] == NULL)
 		{
 			free(*buf);
 			free(array);
 			return NULL;
 		}
+		array[0][0] = '\0';
 		return (array);
 	}
+
 	array = malloc(sizeof(char *) * (count + 1));
-	if (array == NULL) 
+	if (array == NULL)
 	{
 		free(*buf);
 		return (NULL);
 	}
-	for (i = 0; i < k; i++) 
+	
+	for (i = 0; i < k; i++)
 	{
 		if ((*buf)[i] == ' ' || (*buf)[i] == '\t' || (*buf)[i] == '\n')
 			(*buf)[i] = '\0';
