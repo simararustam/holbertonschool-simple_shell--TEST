@@ -66,8 +66,15 @@ int arg_counter(char *buf, int size)
         if ((i == 0 && buf[i] != ' ') || (i > 0 && buf[i - 1] == ' ' && buf[i] != ' ' && buf[i] != '\n'))
             count++;
     }
+
+    if (size > 0 && buf[size - 1] != '\n')
+    {
+        count++;
+    }
+
     return (count);
 }
+
 
 
 /**
