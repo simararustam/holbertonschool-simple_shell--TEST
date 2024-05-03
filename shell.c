@@ -8,12 +8,10 @@
   */
 int main_helper(char **fcommand, int status, char *buf)
 {
-	long exit_status;
-	char *endptr;
-	
 	if (fcommand == NULL)
 	{
-		free(buf), free_path();
+		free(buf);
+		free_path();
 		if (status)
 			printf("\n");
 		return (1);
@@ -22,19 +20,24 @@ int main_helper(char **fcommand, int status, char *buf)
 	{
 		if (fcommand[1] != NULL)
 		{
-        		exit_status = custom_strtol(fcommand[1], &endptr, 10);
-        		if (*endptr != '\0')
+			long exit_status;
+			char *endptr;
+			exit_status = custom_strtol(fcommand[1], &endptr, 10);
+			if (*endptr != '\0')
 			{
-            			fprintf(stderr, "%s: Illegal number: %s\n", argv[0], fcommand[1]);
-            			exit(EXIT_FAILURE);
-        		}
-			int exit_status = custom_atoi(fcommand[1]);
-			free(buf), free_path(), free(fcommand);
+				fprintf(stderr, "%s: Illegal number: %s\n", fcommand[0], fcommand[1]);
+				exit(EXIT_FAILURE);
+			}
+			free(buf);
+			free_path();
+			free(fcommand);
 			exit(exit_status);
 		}
 		else
 		{
-			free(buf), free_path(), free(fcommand);
+			free(buf);
+			free_path();
+			free(fcommand);
 			exit(EXIT_SUCCESS);
 		}
 	}
