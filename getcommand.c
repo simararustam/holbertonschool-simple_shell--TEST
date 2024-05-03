@@ -77,38 +77,38 @@ char **get_command(char **buf)
 	size_t n = 1, k, i, l = 0, count;
 
 	*buf = custom_getline();
-	if (k == (size_t)(-1))
+	if (*buf == NULL) 
 	{
-		if (errno == 0)
-			return (NULL);
-		perror("Failure to read line");
 		return (NULL);
 	}
+
+	k = strlen(*buf);
 	count = arg_counter(*buf, k);
-	if (!count)
+	if (!count) 
 	{
 		array = malloc(sizeof(char *));
 		array[0] = strdup(" ");
 		return (array);
 	}
 	array = malloc(sizeof(char *) * (count + 1));
-	if (array == NULL)
+	if (array == NULL) 
 	{
-		free(*buf), free(array);
+		free(*buf);
 		return (NULL);
 	}
-	for (i = 1; i < k; i++)
+	for (i = 1; i < k; i++) 
 	{
 		if ((*buf)[i - 1] == ' ' || (*buf)[i - 1] == '\t' || (*buf)[i - 1] == '\n')
 			(*buf)[i - 1] = '\0';
 		else if ((*buf)[i - 1] == '\0')
 			continue;
-		else
+		else 
 		{
 			array[l] = *buf + i - 1;
 			while ((*buf)[i] != ' ' && (*buf)[i] != '\t' && (*buf)[i] != '\n')
 				i++;
-			(*buf)[i] = '\0', l++;
+			(*buf)[i] = '\0';
+			l++;
 		}
 	}
 	array[l] = NULL;
