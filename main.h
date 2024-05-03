@@ -27,5 +27,6 @@ size_t custom_strlen(const char *s);
 int arg_counter(char *buf, int size);
 int custom_atoi(const char *str);
 long custom_strtol(const char *str, char **endptr, int base);
+int main_helper(char **fcommand, int status, char *buf, char **argv);
 
 #endif
