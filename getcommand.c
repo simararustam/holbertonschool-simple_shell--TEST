@@ -15,6 +15,7 @@ char *custom_getline(void)
 	static int bytes_read = 0;
 	char *line = NULL;
 	int line_size = 0;
+	int i;
 
 	while (1)
 	{
@@ -33,8 +34,6 @@ char *custom_getline(void)
 				line = (char *)malloc(line_size + 1);
 				if (line == NULL)
 					return (NULL);
-				
-				int i;
 				
 				for (i = 0; i < line_size; i++)
 					line[i] = buffer[pos - line_size + i];
