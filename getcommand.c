@@ -1,7 +1,7 @@
 #include <errno.h>
 #include "main.h"
 
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 10000
 
 /**
  * custom_getline - Custom getline function
