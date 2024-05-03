@@ -6,6 +6,7 @@ char *custom_strdup(const char *src)
 {
     size_t len;
     size_t i;
+    char *dst;
     
     if (src == NULL)
         return (NULL);
@@ -16,7 +17,7 @@ char *custom_strdup(const char *src)
         len++;
     }
     
-    char *dst = (char *)malloc((len + 1) * sizeof(char));
+    *dst = (char *)malloc((len + 1) * sizeof(char));
     if (dst == NULL)
         return (NULL);
     
