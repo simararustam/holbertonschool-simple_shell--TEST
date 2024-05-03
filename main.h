@@ -20,6 +20,7 @@ void print_prompt(int status);
 void free_path(void);
 int exec_c(char **fcommand);
 char **_strtok(char *str, char delim);
-char *custom_getline(void)
+char *custom_getline(void);
+int arg_counter(char *buf, int size);
 
 #endif
