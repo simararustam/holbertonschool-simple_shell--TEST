@@ -53,19 +53,20 @@ char *custom_getline(void)
   * arg_counter - counts number of arguments
   * @buf: user input
   * @size: size of user input
-  * Return: number of argumnets
+  * Return: number of arguments
   */
 int arg_counter(char *buf, int size)
 {
 	int count = 0, i;
 
-	for (i = 1; i < size; i++)
-		count += ((buf[i - 1] == ' ' &&
-					(buf[i] != ' ' && buf[i] != '\n')) ||
-				(i == 1 &&
-				 buf[i - 1] != ' '));
+	for (i = 0; i < size; i++)
+	{
+		if ((i == 0 && buf[i] != ' ') || (buf[i - 1] == ' ' && buf[i] != ' ' && buf[i] != '\n'))
+			count++;
+	}
 	return (count);
 }
+
 /**
   * get_command - format command line arguments
   * @buf: buffer for storing user input
@@ -74,7 +75,7 @@ int arg_counter(char *buf, int size)
 char **get_command(char **buf)
 {
 	char **array;
-	size_t n = 1, k, i, l = 0, count;
+	size_t k, i, l = 0, count;
 
 	*buf = custom_getline();
 	if (*buf == NULL) 
@@ -87,7 +88,18 @@ char **get_command(char **buf)
 	if (!count) 
 	{
 		array = malloc(sizeof(char *));
+		if (array == NULL)
+		{
+			free(*buf);
+			return NULL;
+		}
 		array[0] = strdup(" ");
+		if (array[0] == NULL)
+		{
+			free(*buf);
+			free(array);
+			return NULL;
+		}
 		return (array);
 	}
 	array = malloc(sizeof(char *) * (count + 1));
@@ -96,18 +108,13 @@ char **get_command(char **buf)
 		free(*buf);
 		return (NULL);
 	}
-	for (i = 1; i < k; i++) 
+	for (i = 0; i < k; i++) 
 	{
-		if ((*buf)[i - 1] == ' ' || (*buf)[i - 1] == '\t' || (*buf)[i - 1] == '\n')
-			(*buf)[i - 1] = '\0';
-		else if ((*buf)[i - 1] == '\0')
-			continue;
-		else 
-		{
-			array[l] = *buf + i - 1;
-			while ((*buf)[i] != ' ' && (*buf)[i] != '\t' && (*buf)[i] != '\n')
-				i++;
+		if ((*buf)[i] == ' ' || (*buf)[i] == '\t' || (*buf)[i] == '\n')
 			(*buf)[i] = '\0';
+		else if (i == 0 || (*buf)[i - 1] == '\0')
+		{
+			array[l] = *buf + i;
 			l++;
 		}
 	}
