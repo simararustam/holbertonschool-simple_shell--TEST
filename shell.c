@@ -19,7 +19,7 @@ int main_helper(char **fcommand, int status, char *buf)
 	{
 		if (fcommand[1] != NULL)
 		{
-			int exit_status = atoi(fcommand[1]);
+			int exit_status = custom_atoi(fcommand[1]);
 			free(buf), free_path(), free(fcommand);
 			exit(exit_status);
 		}
