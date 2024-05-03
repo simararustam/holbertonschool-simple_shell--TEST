@@ -1,3 +1,6 @@
+#include <stddef.h>
+#include <stdlib.h>
+
 /* custom_strdup: Custom implementation of strdup */
 char *custom_strdup(const char *src)
 {
