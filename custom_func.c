@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 /* Custom implementation of strdup */
 char *custom_strdup(const char *src)
