@@ -61,7 +61,7 @@ int main(int argc, char **argv, char **env)
 	{
 		status = isatty(STDIN_FILENO), print_prompt(status);
 		fcommand = get_command(&buf);
-		if (main_helper(fcommand, status, buf))
+		if (main_helper(fcommand, status, buf, argv))
 			break;
 		if (!custom_strcmp(fcommand[0], " "))
 		{
