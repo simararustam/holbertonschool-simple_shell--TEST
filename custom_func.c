@@ -76,34 +76,60 @@ int custom_atoi(const char *str)
     return (sign * result);
 }
 
-long custom_strtol(const char *str)
+long custom_strtol(const char *str, char **endptr, int base) 
 {
 	long result = 0;
 	bool is_negative = false;
 	int i = 0;
 
-	if (str[0] == '-')
-    {
+	if (str[0] == '-') 
+	{
 		is_negative = true;
 		i++;
 	}
 
-	for (; str[i] != '\0'; ++i)
-    {
-		if (str[i] >= '0' && str[i] <= '9')
-        {
-			result = result * 10 + (str[i] - '0');
+	for (; str[i] != '\0'; ++i) 
+	{
+		int digit = str[i];
+		if (digit >= '0' && digit <= '9') 
+		{
+			digit -= '0';
+		} 
+		else if (digit >= 'a' && digit <= 'z') 
+		{
+			digit -= 'a' - 10;
+		} 
+		else if (digit >= 'A' && digit <= 'Z') 
+		{
+			digit -= 'A' - 10;
+		} 
+		else 
+		{
+			if (endptr != NULL) 
+			{
+				*endptr = (char *)&str[i];
+			}
+			return (result);
 		}
-        
-        else
-        {
-			return (0);
+		if (digit >= base) 
+		{
+			if (endptr != NULL) 
+			{
+				*endptr = (char *)&str[i];
+			}
+			return (result);
 		}
+		result = result * base + digit;
 	}
 
-	if (is_negative)
-    {
+	if (is_negative) 
+	{
 		result = -result;
+	}
+
+	if (endptr != NULL) 
+	{
+		*endptr = (char *)&str[i];
 	}
 
 	return (result);
