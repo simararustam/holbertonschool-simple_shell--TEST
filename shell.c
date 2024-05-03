@@ -23,7 +23,7 @@ int main_helper(char **fcommand, int status, char *buf)
 			long exit_status;
 			char *endptr;
 			exit_status = custom_strtol(fcommand[1], &endptr, 10);
-			if (*endptr != '\0')
+			if (*endptr != '\0' || exit_status < 0)
 			{
 				fprintf(stderr, "%s: Illegal number: %s\n", fcommand[0], fcommand[1]);
 				exit(EXIT_FAILURE);
