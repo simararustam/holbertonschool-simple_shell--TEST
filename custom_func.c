@@ -75,3 +75,35 @@ int custom_atoi(const char *str)
     return (sign * result);
 }
 
+long custom_strtol(const char *str)
+{
+	long result = 0;
+	bool is_negative = false;
+	int i = 0;
+
+	if (str[0] == '-')
+    {
+		is_negative = true;
+		i++;
+	}
+
+	for (; str[i] != '\0'; ++i)
+    {
+		if (str[i] >= '0' && str[i] <= '9')
+        {
+			result = result * 10 + (str[i] - '0');
+		}
+        
+        else
+        {
+			return (0);
+		}
+	}
+
+	if (is_negative)
+    {
+		result = -result;
+	}
+
+	return (result);
+}
