@@ -17,11 +17,21 @@ int main_helper(char **fcommand, int status, char *buf)
 	}
 	else if (!custom_strcmp(fcommand[0], "exit"))
 	{
-		free(buf), free_path(), free(fcommand);
-		return (1);
+		if (fcommand[1] != NULL)
+		{
+			int exit_status = atoi(fcommand[1]);
+			free(buf), free_path(), free(fcommand);
+			exit(exit_status);
+		}
+		else
+		{
+			free(buf), free_path(), free(fcommand);
+			exit(EXIT_SUCCESS);
+		}
 	}
 	return (0);
 }
+
 /**
   * main - shell start function
   * @argv: argument variables
