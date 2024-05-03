@@ -54,20 +54,21 @@ char *custom_getline(void)
  */
 int arg_counter(char *buf, int size)
 {
-	int count = 0, i;
+    int count = 0, i;
 
-	if (buf == NULL || size <= 0)
-	{
-		return (0);
-	}
+    if (buf == NULL || size <= 0)
+    {
+        return (0);
+    }
 
-	for (i = 0; i < size; i++)
-	{
-		if ((i == 0 && buf[i] != ' ') || (buf[i - 1] == ' ' && buf[i] != ' ' && buf[i] != '\n'))
-			count++;
-	}
-	return (count);
+    for (i = 0; i < size; i++)
+    {
+        if ((i == 0 && buf[i] != ' ') || (i > 0 && buf[i - 1] == ' ' && buf[i] != ' ' && buf[i] != '\n'))
+            count++;
+    }
+    return (count);
 }
+
 
 /**
  * get_command - format command line arguments
