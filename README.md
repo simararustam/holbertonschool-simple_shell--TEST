@@ -25,19 +25,23 @@ The project is organized into several C source files:
 
 To compile the shell, run:
 
-```bash
+```
 gcc -Wall -Werror -pedantic -Wextra *.c -o shell
+```
 
 Then, execute the compiled shell binary:
 
-bash
-Copy code
+```
 ./shell
+```
+
 Once the shell is running, you can type commands just like in a regular terminal.
 
-Future Improvements
-Error Handling: Enhance error handling to provide more informative error messages to users.
-Built-in Commands: Implement additional built-in commands such as cd, history, etc.
-Interactive Features: Add support for interactive features like command history, auto-completion, and customizable prompt.
-Contribution
+## Future Improvements
+
+- **Error Handling**: Enhance error handling to provide more informative error messages to users.
+- **Built-in Commands**: Implement additional built-in commands such as cd, history, etc.
+- **Interactive Features**: Add support for interactive features like command history, auto-completion, and customizable prompt.
+
+## Contribution
 Contributions to this project are welcome. If you find any issues or have suggestions for improvements, feel free to open an issue or create a pull request.
