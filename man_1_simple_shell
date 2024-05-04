@@ -1,0 +1,59 @@
+.TH SH 1 "May 2024" "Version 1.0" "Simple Shell Manual"
+
+.SH NAME
+shell \- Simple Shell
+
+.SH SYNOPSIS
+.nf
+\fB./shell\fR
+.fi
+
+.SH DESCRIPTION
+The \fB./shell\fR command calls Simple Shell, minimalistic but powerful 
+command line interface designed for seamless interaction with the system.
+Shell provides users with an intuitive environment to execute commands and 
+manage workflow efficiently.
+
+.SH OPTIONS
+None.
+
+.SH USAGE
+To start the Simple Shell, execute the following command:
+.nf
+\fB$ ./shell\fR
+.fi
+Upon launching the shell, users will gain access to a versatile toolkit
+for managing files, executing programs, and customizing their system 
+environment.
+
+.SH EXAMPLES
+Below are some illustrative examples that shows the functionality of 
+the Simple Shell:
+.nf
+\fB$ ./shell
+#cisfun$ ls
+Desktop  Documents  Downloads  Music  Pictures  Videos
+
+#cisfun$ echo "Hello, World!"
+Hello, World!
+
+#cisfun$ env
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+SHELL=/bin/bash
+HOME=/home/user
+...
+
+#cisfun$ exit
+.fi
+
+.SH SEE ALSO
+bash(1), zsh(1), csh(1)
+
+.SH AUTHOR
+The Simple Shell was developed by Simara Karimli and Rafig Mammadov.
+
+.SH REPORTING BUGS
+If you encounter any issues or bugs, please report them to simararustam@gmail.com or rafigmammadov@yahoo.com for prompt resolution.
+
+.SH COPYRIGHT
+This is free software: you are free to modify and distribute it.
