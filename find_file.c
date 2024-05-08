@@ -20,7 +20,7 @@ char *find_file(char *command, int *lk)
 	{
 		if (!stat(command, &st))
 		{
-			result = custom_strdup(command);
+			result = strdup(command);
 			if (result != NULL)
 				(*lk)++;
 		}
@@ -29,7 +29,7 @@ char *find_file(char *command, int *lk)
 	if (!path_var)
 		return (NULL);
 	for (j = 0; path_var[j] != NULL; j++)
-		max_len += custom_strlen(path_var[j]) + custom_strlen(command) + 2;
+		max_len += strlen(path_var[j]) + strlen(command) + 2;
 	temp = malloc(max_len);
 	if (temp == NULL)
 		return (NULL);
@@ -42,7 +42,7 @@ char *find_file(char *command, int *lk)
 		{
 			(*lk)++;
 			errno = 0;
-			result = custom_strdup(temp);
+			result = strdup(temp);
 			break;
 		}
 		i++;
