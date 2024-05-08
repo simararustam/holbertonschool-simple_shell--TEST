@@ -20,13 +20,5 @@ void print_prompt(int status);
 void free_path(void);
 int exec_c(char **fcommand);
 char **_strtok(char *str, char delim);
-char *custom_getline(void);
-char *custom_strdup(const char *src);
-int custom_strcmp(const char *s1, const char *s2);
-size_t custom_strlen(const char *s);
-int arg_counter(char *buf, int size);
-int custom_atoi(const char *str);
-long custom_strtol(const char *str, char **endptr, int base);
-int main_helper(char **fcommand, int status, char *buf, char **argv);
 
 #endif
