@@ -29,7 +29,7 @@ char **_strtok(char *str, char delim)
 				i++;
 			if (str[i] == '\0')
 			{
-				array[j - 1] = custom_strdup(start);
+				array[j - 1] = strdup(start);
 				j++;
 				break;
 			}
@@ -37,7 +37,7 @@ char **_strtok(char *str, char delim)
 			{
 				end = str + i;
 				*end = '\0';
-				array[j - 1] = custom_strdup(start), *end = delim, start = end;
+				array[j - 1] = strdup(start), *end = delim, start = end;
 			}
 			j++;
 		}
